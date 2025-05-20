@@ -1,4 +1,8 @@
-NAME =  
+NAME = push_swap
+
+S_SRC_UTILS =  
+D_SRC_UTILS =  utils/
+SRC_UTILS =  $(addprefix $(D_SRC_UTILS), $(S_SRC_UTILS))
 
 SRC = 
 D_SRC = src/
