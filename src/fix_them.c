@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:26:21 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/21 15:38:53 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/21 15:52:53 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ int	fix_next_biggest(int last_big, t_nb *stack, size_t size, int i)
 	to_fix->nb = S_INT32_MIN + i;
 }
 void	allign_them(t_nb *stack)
+{
+	
+}
 
 void	fix_them(t_nb *stack, size_t size)
 {
