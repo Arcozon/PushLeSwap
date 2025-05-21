@@ -1,42 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 12:20:17 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/21 14:10:17 by gaeudes          ###   ########.fr       */
+/*   Created: 2025/05/21 11:22:19 by gaeudes           #+#    #+#             */
+/*   Updated: 2025/05/21 13:10:48 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	print_error(char error[])
+void	print_list(t_nb	*stack[2], size_t size[2])
 {
-	write(2, error, ft_strlen(error));
-}
+	size_t	ia, ib;
 
-char	ps_error(char errors, char *p_name)
-{
-	if (errors & E_MLLC)
+	ia = 0;
+	ib = 0;
+	while (ia < size[a] || ib < size[b])
 	{
-		print_error(p_name);
-		print_error(": Malloc error\n");
+		if (ia < size[a])
+		{
+			printf("|%.3d|",stack[a]->nb);
+			stack[a] = stack[a]->bellow;
+			++ia;
+		}
+		else
+			printf("|   |");
+		if (ib < size[b])
+		{
+			printf("%.3d|\n",stack[b]->nb);
+			stack[b] = stack[b]->bellow;
+			++ib;
+		}
+		else
+			printf("|   |\n");
 	}
-	else if (errors)
-		print_error("Error\n");
-	return (errors);
-}
-
-int	main(int ac, char *av[])
-{
-	t_ps	ps;
-
-	if (!init_ps(&ps, av))
-	{
-		print_list(ps.stack, ps.size);
-	}
-	return (ps_error(ps.errors, ps.p_name));
-	(void)ac;
 }

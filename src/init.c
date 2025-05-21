@@ -6,81 +6,90 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:47:44 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/20 19:42:38 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/21 14:09:46 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-char	init_pile(t_pile piles[2], int ac)
+int	insert_new(t_nb **a, int nb)
 {
-	piles[a].top = 0;
-	piles[a].size = ac;
-	piles[b].top = 0;
-	piles[b].size = 0;
-	piles[a].pile = malloc(sizeof(int) * ac);
-	piles[b].pile = malloc(sizeof(int) * ac);
-	if (!piles[a].pile || !piles[b].pile)
-	{
-		free(piles[a].pile);
-		free(piles[b].pile);
-		return (E_MLLC);
-	}
-	return (0);
+	t_nb	*new;
+
+	new = malloc (sizeof(t_nb));
+	if (!new)
+		return (0);
+	new->nb = nb;
+	new->bellow = 0;
+	new->above = 0;
+	while (*a)
+		a = &((*a)->bellow);
+	*a = new;
+	return (1);
 }
 
-char	check_pair(int *pile, int size)
+void	loop_stack(t_nb *a)
 {
-	int	i;
-	int	j;
+	t_nb	*start;
 
-	i = 0;
-	while (i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (pile[i] == pile[j])
-				return (A_DBLE);
-			++j;
-		}
-		++i;
-	}
-	return (0);
-}
-
-void	fill_piles(t_pile piles[2], t_ps *ps, int ac, char *av[])
-{
-	int	i;
-
-	ps->errors |= init_pile(piles, ac);\
-	if (ps->errors)
+	if (!a)
 		return ;
-	i = 0;
-	while (i < ac)
-	{
-		if (!fcked_atoi(&(piles[a].pile[i]), av[i]))
-		{
-			ps->errors |= A_OVER;
-			free(piles[a].pile);
-			free(piles[b].pile);
-			return ;
-		}
-		++i;
-	}
-	ps->errors |= check_pair(piles[1].pile, ac);
-	if (ps->errors)
-	{
-		free(piles[a].pile);
-		free(piles[b].pile);
-	}
+	start = a;
+	while (a->bellow)
+		a = a->bellow;
+	a->bellow = start;
 }
 
-int	init_ps(t_ps *ps, int ac, char *av[])
+void	reverse_that_shit(t_nb *a)
 {
-	ps->errors = are_args_valid(ac, av);
+	t_nb	*start;
+	t_nb	*above;
+
+	if (!a)
+		return ;
+	start = a;
+	above = a;
+	a = a->bellow;
+	while (a != start)
+	{
+		a->above = above;
+		above = a;
+		a = a->bellow;
+	}
+	a->above = above;
+}
+
+char	fill_stacks(t_nb **a, size_t* size, char *av[])
+{
+	int	nb;
+
+	while (*av)
+	{
+		if (!fcked_atoi(&nb, *av))
+			return (A_OVER);
+		if (!insert_new(a, nb))
+			return (E_MLLC);
+		++*size;
+		++av;
+	}
+	loop_stack(*a);
+	reverse_that_shit(*a);
+	return (0);
+}
+
+char	init_ps(t_ps *ps, char *av[])
+{
+	ps->errors = are_they_formated_well(av + 1);
 	ps->p_name = av[0];
+	if (slashchr(av[0]) != -1)
+		ps->p_name += slashchr(av[0]) + 1;
+	ps->stack[a] = 0;
+	ps->size[a] = 0;
+	ps->stack[b] = 0;
+	ps->size[b] = 0;
 	if (!ps->errors)
-		fill_piles(ps->piles, ps, ac - 1, av + 1);
+		ps->errors |= fill_stacks(&(ps->stack[a]), &(ps->size[a]), av + 1);
+	if (!ps->errors)
+		ps->errors |= check_doublon(ps->stack[a], ps->size[a]);
 	return (ps->errors);
 }

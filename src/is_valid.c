@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:44 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/20 19:17:27 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/21 14:22:04 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_he_formated_well(char str[])
 	return (1);
 }
 
-int	are_they_formated_well(char *av[])
+char	are_they_formated_well(char *av[])
 {
 	size_t	i;
 
@@ -44,23 +44,31 @@ int	are_they_formated_well(char *av[])
 	return (0);
 }
 
-int	fcked_atoi(int *ptr, char str[])
+char	check_doublon(t_nb *stack, size_t size)
 {
-	long	res;
-	int		sign;
 	size_t	i;
+	t_nb	*goal_bellow;
+	t_nb	*goal_above;
 
-	sign = 1;
-	res = 0;
-	if (str[i] == '-')
-		sign = (++i, -1);
-	while (ft_isdigit(str[i]))
+	i = 0;
+	goal_bellow = stack->above;
+	goal_above = stack->bellow;
+	while (i < size)
 	{
-		res += 10 * res + str[i] - '0';
-		if (res > (2147483647 + (sign == -1)))
-			return (0);
-		++i;
+		while (stack != goal_bellow)
+		{
+			if (stack->nb == goal_bellow->nb)
+				return (A_DBLE);
+			stack = stack->bellow;
+		}
+		goal_bellow = (++i, stack->above);
+		while (stack != goal_above)
+		{
+			if (stack->nb == goal_above->nb)
+				return (A_DBLE);
+			stack = stack->above;
+		}
+		goal_above = (++i, stack->bellow);
 	}
-	*ptr = res;
-	return (str[i] == 0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:19:10 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/20 19:48:10 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/21 15:01:04 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,44 @@
 
 # include "errors.h"
 
+# define S_INT32_MIN -2147483648
+
 enum
 {
 	a,
 	b
 };
 
-typedef struct s_pile
+typedef struct s_nb	t_nb;
+struct s_nb
 {
-	int		*pile;
-	size_t	top;
-
-	size_t	size;
-}	t_pile;
-
+	int		nb;
+	t_nb	*bellow;
+	t_nb	*above;	
+};
 
 typedef struct s_pushswap
 {
 	char	*p_name;
 
-	t_pile	piles[2];
+	t_nb	*stack[2];
+	size_t	size[2];
 
 	char	errors;
 }	t_ps;
 
-int	are_they_formated_well(char *av[]);
-int	fcked_atoi(int *ptr, char str[]);
+char	init_ps(t_ps *ps, char *av[]);
 
-int slashchr(char *str);
-int	ft_isdigit(char c);
+char	check_doublon(t_nb *stack, size_t size);
+char	are_they_formated_well(char *av[]);
+int		fcked_atoi(int *ptr, char str[]);
+
+int		slashchr(char *str);
+int		ft_isdigit(char c);
 size_t	ft_strlen(char str[]);
+
+// Debug
+void	print_list(t_nb	*stack[2], size_t size[2]);
 
 #endif
 #include <stdio.h>
