@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:19:10 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/25 18:58:53 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/25 19:31:49 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define S_INT32_MIN -2147483648
 
-# define MAX_DEPTH 8
+# define MAX_DEPTH 17 
 
 # define NB_ORDER 11
 

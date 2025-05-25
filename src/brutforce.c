@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:35:32 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/25 19:01:59 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/25 19:24:16 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	bf(t_nb *stacks[2], size_t size[2], t_order orders[MAX_DEPTH], size_t depth)
 	{
 		if (is_order_relevant(try, orders[depth - 1], size))
 		{
+			fprintf(stderr, "#");
 			orders[depth] = try;
 			exec_order(stacks, size, try);
 			if (bf(stacks, size, orders, depth + 1))
@@ -94,7 +95,7 @@ int	bf(t_nb *stacks[2], size_t size[2], t_order orders[MAX_DEPTH], size_t depth)
 		++try;
 	}
 	revert_order(stacks, size, orders[depth - 1]);
-	printf("%zu\n", depth);
+	// printf("%zu\n", depth);
 	return (0);
 }
 
@@ -111,6 +112,7 @@ int	start_brut_force(t_nb *stacks[2], size_t size[2])
 	{
 		if (relevant[try] == '1')
 		{
+			fprintf(stderr, "#");
 			orders[0] = try;
 			exec_order(stacks, size, try);
 			if (bf(stacks, size, orders, 1))
