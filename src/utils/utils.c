@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:24:56 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/21 14:22:47 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/25 16:35:42 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,16 @@ int	fcked_atoi(int *ptr, char str[])
 	}
 	*ptr = res;
 	return (str[i] == 0);
+}
+
+void	free_stack(t_nb *stack, size_t size)
+{
+	t_nb	*to_free;
+	
+	while (size--)
+	{
+		to_free = stack;
+		stack = stack->above;
+		free(to_free);
+	}
 }

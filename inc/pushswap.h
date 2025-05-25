@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:19:10 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/21 15:01:04 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/25 16:35:54 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,16 @@ char	init_ps(t_ps *ps, char *av[]);
 char	check_doublon(t_nb *stack, size_t size);
 char	are_they_formated_well(char *av[]);
 int		fcked_atoi(int *ptr, char str[]);
+void	fix_them(t_nb *stack, size_t size);
 
 int		slashchr(char *str);
 int		ft_isdigit(char c);
 size_t	ft_strlen(char str[]);
+void	free_stack(t_nb *stack, size_t size);
 
 // Debug
 void	print_list(t_nb	*stack[2], size_t size[2]);
+void	print_one_list(t_nb *stack);
 
 #endif
 #include <stdio.h>

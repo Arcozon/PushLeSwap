@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:26:21 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/21 15:52:53 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/25 16:37:03 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,40 @@ int	get_delta(t_nb *stack, size_t size)
 	return (min - S_INT32_MIN);
 }
 
-int	fix_next_biggest(int last_big, t_nb *stack, size_t size, int i)
+void	fix_next_biggest(int last_big, t_nb *stack, size_t size, int i)
 {
 	t_nb	*to_fix;
 
-	while (--size)
+	to_fix = 0;
+	while (size--)
 	{
-		if (stack->nb > last_big && stack->nb < to_fix->nb)
+		if (stack->nb > last_big && (!to_fix || to_fix->nb > stack->nb))
+		{
 			to_fix = stack;
-		stack = stack->above;
+		}
+		stack = stack->bellow;
 	}
-	to_fix->nb = S_INT32_MIN + i;
+	if (to_fix)
+		to_fix->nb = S_INT32_MIN + i;
 }
-void	allign_them(t_nb *stack)
+
+void	align_them(t_nb *stack, size_t size)
 {
-	
+	size_t	i;
+	int		target;
+
+	i = size;
+	target = 1;
+	while (i-- > 1)
+	{
+		fix_next_biggest(S_INT32_MIN + target, stack, size, target + 1);
+		++target;
+	}
 }
 
 void	fix_them(t_nb *stack, size_t size)
 {
 	apply_delta(stack, size, get_delta(stack, size));
+	align_them(stack, size);
+	apply_delta(stack, size, S_INT32_MIN);
 }

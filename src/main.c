@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:20:17 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/21 14:10:17 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/25 16:36:33 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ int	main(int ac, char *av[])
 
 	if (!init_ps(&ps, av))
 	{
+		fix_them(ps.stack[a], ps.size[a]);
 		print_list(ps.stack, ps.size);
 	}
+	free_stack(ps.stack[a], ps.size[a]);
 	return (ps_error(ps.errors, ps.p_name));
 	(void)ac;
 }

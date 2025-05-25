@@ -6,11 +6,24 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:22:19 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/21 13:10:48 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/25 16:08:44 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+void	print_one_list(t_nb *stack)
+{
+	t_nb *start;
+
+	start = stack;
+	do
+	{
+		printf("|%.3d|\n", stack->nb);
+		stack = stack->bellow;
+	} while (start != stack);
+	
+}
 
 void	print_list(t_nb	*stack[2], size_t size[2])
 {
