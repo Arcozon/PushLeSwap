@@ -1,14 +1,18 @@
 NAME = push_swap
 
+S_SRC_ORDER =  exec_r.c  exec_rr.c  exec_s_p.c  is_sorted.c
+D_SRC_ORDER =  orders/
+SRC_ORDER =  $(addprefix $(D_SRC_ORDER), $(S_SRC_ORDER))
+
 S_SRC_INIT =  fix_them.c  init.c  is_valid.c
 D_SRC_INIT =  init/
 SRC_INIT =  $(addprefix $(D_SRC_INIT), $(S_SRC_INIT))
 
-S_SRC_UTILS =  utils.c
+S_SRC_UTILS =  utils.c  list_manip.c
 D_SRC_UTILS =  utils/
 SRC_UTILS =  $(addprefix $(D_SRC_UTILS), $(S_SRC_UTILS))
 
-SRC =  $(SRC_UTILS)  $(SRC_INIT) debug.c  main.c
+SRC =  $(SRC_UTILS)  $(SRC_INIT) $(SRC_ORDER)  debug.c  main.c  brutforce.c
 D_SRC =  src/
 
 D_INC = inc/ 
