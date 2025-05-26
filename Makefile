@@ -1,6 +1,14 @@
 NAME = push_swap
 
-S_SRC_ORDER =  exec_r.c  exec_rr.c  exec_s_p.c  is_sorted.c
+S_SRC_FORCE =  brutforce.c  init_force.c
+D_SRC_FORCE =  force/
+SRC_FORCE =  $(addprefix $(D_SRC_FORCE), $(S_SRC_FORCE))
+
+S_SRC_PAPALGO =  papalgo.c
+D_SRC_PAPALGO =  papalgo/
+SRC_PAPALGO =  $(addprefix $(D_SRC_PAPALGO), $(S_SRC_PAPALGO))
+
+S_SRC_ORDER =  exec_r.c  exec_rr.c  exec_s_p.c  print_exec_order.c  is_sorted.c
 D_SRC_ORDER =  orders/
 SRC_ORDER =  $(addprefix $(D_SRC_ORDER), $(S_SRC_ORDER))
 
@@ -12,7 +20,7 @@ S_SRC_UTILS =  utils.c  list_manip.c
 D_SRC_UTILS =  utils/
 SRC_UTILS =  $(addprefix $(D_SRC_UTILS), $(S_SRC_UTILS))
 
-SRC =  $(SRC_UTILS)  $(SRC_INIT) $(SRC_ORDER)  debug.c  main.c  brutforce.c
+SRC =  $(SRC_UTILS)  $(SRC_INIT) $(SRC_ORDER)  $(SRC_FORCE)  $(SRC_PAPALGO)  debug.c  main.c
 D_SRC =  src/
 
 D_INC = inc/ 
