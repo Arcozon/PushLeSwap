@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:19:10 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/28 15:01:16 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/28 17:31:51 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "force.h"
 
 # define S_INT32_MIN -2147483648
-
+# define S_INT32_MAX 2147483647
 # define NB_ORDER 11
 
 enum
