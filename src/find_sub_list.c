@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 09:55:30 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/28 18:23:34 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:42:54 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	debug_lssl(t_nb *a)
 
 	while (start != a->bellow)
 	{
-		printf("{%d}-%lu%s %s\n", a->nb, a->lssl, (char *[]){"    ", "  IN"}[a->in_lssl], (char *[]){"", "  SWAP"}[a->to_swap]);
+		printf("%d-{%lu} %s %s\n", a->nb, a->lssl, (char *[]){"    ", "  IN"}[a->in_lssl], (char *[]){"", "  SWAP"}[a->to_swap]);
 		a = a->bellow;
 	}
-	printf("{%d}-%lu%s %s\n", a->nb, a->lssl, (char *[]){"    ", "  IN"}[a->in_lssl], (char *[]){"", "  SWAP"}[a->to_swap]);
+	printf("%d-{%lu} %s %s\n", a->nb, a->lssl, (char *[]){"    ", "  IN"}[a->in_lssl], (char *[]){"", "  SWAP"}[a->to_swap]);
 }
 
 void	rec_shit(t_nb *act, t_nb *start)
@@ -113,5 +113,5 @@ void	find_sorted_list(t_nb *a)
 	// debug_lssl(a);
 	try_shit(a, &goal_lssl, S_INT32_MAX);
 	// printf("\n\n");
-	// debug_lssl(a);
+	debug_lssl(a);
 }

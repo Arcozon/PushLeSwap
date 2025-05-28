@@ -20,7 +20,7 @@ S_SRC_UTILS =  utils.c  list_manip.c
 D_SRC_UTILS =  utils/
 SRC_UTILS =  $(addprefix $(D_SRC_UTILS), $(S_SRC_UTILS))
 
-SRC =  $(SRC_UTILS)  $(SRC_INIT) $(SRC_ORDER)  $(SRC_FORCE)  $(SRC_PAPALGO)  debug.c  main.c  find_sub_list.c
+SRC =  $(SRC_UTILS)  $(SRC_INIT) $(SRC_ORDER)  $(SRC_FORCE)  $(SRC_PAPALGO)  debug.c  main.c  find_sub_list.c adalgo.c
 D_SRC =  src/
 
 D_INC = inc/ 
