@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:19:10 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/26 13:33:30 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/28 15:01:16 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,13 @@ struct s_nb
 {
 	int		nb;
 	t_nb	*bellow;
-	t_nb	*above;	
+	t_nb	*above;
+
+	size_t	lssl;
+	int		in_lssl;
+	unsigned char to_swap:1;
 };
+// len sub sorted list
 
 typedef struct s_pushswap
 {
@@ -53,6 +58,7 @@ char	check_doublon(t_nb *stack, size_t size);
 char	are_they_formated_well(char *av[]);
 int		fcked_atoi(int *ptr, char str[]);
 void	fix_them(t_nb *stack, size_t size);
+void	find_sorted_list(t_nb *a);
 
 void	e_pa(t_nb *stacks[2], size_t size[2]);
 void	e_pb(t_nb *stacks[2], size_t size[2]);

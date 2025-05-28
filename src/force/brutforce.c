@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:35:32 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/26 12:07:55 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/28 11:30:59 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static inline void	revert_order(t_nb *stacks[2], size_t size[2], t_order to_rev)
 static inline void	exec_order(t_nb *stacks[2], size_t size[2], t_order to_exec)
 {
 	static void	(*exec[NB_ORDER])(t_nb *[2], size_t [2]) = {e_pa, e_pb, e_sa,
-		e_sb, e_ss, e_ra, e_rb, e_rr, e_rra, e_rrb, e_rra};
+		e_sb, e_ss, e_ra, e_rb, e_rr, e_rra, e_rrb, e_rrr};
 
 	exec[to_exec](stacks, size);
 }

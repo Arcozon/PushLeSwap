@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:20:17 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/26 15:59:39 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/28 15:24:48 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ int	main(int ac, char *av[])
 	if (!init_ps(&ps, av))
 	{
 		fix_them(ps.stack[a], ps.size[a]);
+		find_sorted_list(ps.stack[a]);
+		exit(0);
 		print_list(ps.stack, ps.size);
-		// if (ps.size[a] <= 10)
-		// 	start_brutforce(ps.stack, ps.size);
-		// else
+		if (ps.size[a] <= 8)
+			start_brutforce(ps.stack, ps.size);
+		else
 			papalgo_init(ps.stack, ps.size);
 		print_list(ps.stack, ps.size);
 	}

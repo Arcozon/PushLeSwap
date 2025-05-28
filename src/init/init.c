@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:47:44 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/25 19:14:55 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/28 15:22:34 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	insert_new(t_nb **a, int nb)
 	if (!new)
 		return (0);
 	new->nb = nb;
+	new->lssl = 0;
 	new->bellow = 0;
 	new->above = 0;
 	while (*a)

@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:26:21 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/25 19:21:45 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/28 15:24:28 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,6 @@ void	align_them(t_nb *stack, size_t size)
 void	fix_them(t_nb *stack, size_t size)
 {
 	apply_delta(stack, size, get_delta(stack, size));
-	// print_one_list(stack);
 	align_them(stack, size);
-	// printf("---------------------\n");
-	// print_one_list(stack);
 	apply_delta(stack, size, S_INT32_MIN);
-	// printf("---------------------\n");
-	// print_one_list(stack);
 }
