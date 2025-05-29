@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 18:24:35 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/29 21:12:42 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 21:38:55 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	push_all_poop(t_nb *stacks[2], size_t size[2])
 		else
 		{
 			pe_order(stacks, size, pb);
+			if (size[B] > 1 && stacks[B]->nb > (int)(size[A] + size[B]) / 2)
+				pe_order(stacks, size, rb);
 		}
 	}
 }
@@ -227,6 +229,7 @@ void	exec_best(t_bmove best, t_nb *stacks[2], size_t size[2])
 			pe_order(stacks, size, ra);
 		while (best.n_rb--)
 			pe_order(stacks, size, rb);
+		
 	}
 	if (best.best == B_RRR)
 	{
@@ -238,6 +241,7 @@ void	exec_best(t_bmove best, t_nb *stacks[2], size_t size[2])
 			pe_order(stacks, size, rra);
 		while (best.n_rrb--)
 			pe_order(stacks, size, rrb);
+		
 	}
 	// fprintf(stderr, "Skibidi %d Gyat\n", stacks[B]->nb);
 	pe_order(stacks, size, pa);
