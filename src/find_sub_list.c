@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 09:55:30 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/28 18:42:54 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 17:54:08 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	debug_lssl(t_nb *a)
 
 	while (start != a->bellow)
 	{
-		printf("%d-{%lu} %s %s\n", a->nb, a->lssl, (char *[]){"    ", "  IN"}[a->in_lssl], (char *[]){"", "  SWAP"}[a->to_swap]);
+		fprintf(stderr,"%d-{%lu} %s %s\n", a->nb, a->lssl, (char *[]){"    ", "  IN"}[a->in_lssl], (char *[]){"", "  SWAP"}[a->to_swap]);
 		a = a->bellow;
 	}
-	printf("%d-{%lu} %s %s\n", a->nb, a->lssl, (char *[]){"    ", "  IN"}[a->in_lssl], (char *[]){"", "  SWAP"}[a->to_swap]);
+	fprintf(stderr,"%d-{%lu} %s %s\n", a->nb, a->lssl, (char *[]){"    ", "  IN"}[a->in_lssl], (char *[]){"", "  SWAP"}[a->to_swap]);
 }
 
 void	rec_shit(t_nb *act, t_nb *start)
@@ -83,14 +83,14 @@ int	find_nb_in_lssl(t_nb *a, size_t goal)
 	return (0);
 }
 
-int	try_shit(t_nb *act, size_t *goal_lssl, int biggest)
+int	try_shit(t_nb *act, size_t *goal_lssl, int biggest, t_nb *start)
 {
 	if (!(act->lssl == *goal_lssl && act->in_lssl))
-		biggest = try_shit(act->bellow, goal_lssl, biggest);
+		biggest = try_shit(act->bellow, goal_lssl, biggest, start);
 	if (act->lssl == *goal_lssl && act->in_lssl)
 	{
 		// fprintf(stderr, "%d\n", biggest);
-		if (act->above->lssl == *goal_lssl && act->above->nb < biggest)
+		if (act != start && act->above->lssl == *goal_lssl && act->above->nb < biggest)
 		{
 			act->to_swap = 1;
 			act->above->to_swap = 1;
@@ -111,7 +111,7 @@ void	find_sorted_list(t_nb *a)
 	// printf("--%lu-\n", goal_lssl);
 	try_stuff(a, goal_lssl, a, 1);
 	// debug_lssl(a);
-	try_shit(a, &goal_lssl, S_INT32_MAX);
+	try_shit(a, &goal_lssl, S_INT32_MAX, a);
 	// printf("\n\n");
 	debug_lssl(a);
 }

@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 12:46:51 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/26 17:45:03 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 15:23:54 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	split_next_time(t_ppg pp)
 		{
 			if (toggle_side)
 			{
-				if (!ib || (ia && pp.stack[b]->nb > pp.stack[a]->nb))
+				if (!ib || (ia && pp.stack[B]->nb > pp.stack[A]->nb))
 					(--ia, pp_eorders(pp, (t_order []){pb, end}, 1));
 				else
 					--ib;
@@ -63,7 +63,7 @@ void	split_next_time(t_ppg pp)
 			}
 			else
 			{
-				if (!ia || (ib && pp.stack[b]->nb < pp.stack[a]->nb))
+				if (!ia || (ib && pp.stack[B]->nb < pp.stack[A]->nb))
 					(--ib, pp_eorders(pp, (t_order []){pa, end}, 1));
 				else
 					--ia;
@@ -81,11 +81,11 @@ void	merge_last_time(t_ppg pp)
 	size_t	ia;
 	size_t	ib;
 
-	ia = pp.size[a];
-	ib = pp.size[b];
+	ia = pp.size[A];
+	ib = pp.size[B];
 	while (ia || ib)
 	{
-		if (!ia || (ib && pp.stack[b]->nb < pp.stack[a]->nb))
+		if (!ia || (ib && pp.stack[B]->nb < pp.stack[A]->nb))
 			(--ib, pp_eorders(pp, (t_order []){pa, end}, 1));
 		else
 			--ia;
@@ -103,13 +103,13 @@ void	split_first_time(t_ppg pp)
 	{
 		if (toggle_side)
 		{
-			if (pp.size[a] > 2 && pp.stack[a]->nb > pp.stack[a]->bellow->nb)
+			if (pp.size[A] > 2 && pp.stack[A]->nb > pp.stack[A]->bellow->nb)
 				pp_eorders(pp, (t_order[]){sa, end}, pp.isize_a);
 			pp_eorders(pp, (t_order[]){ra, ra, end}, pp.isize_a);
 		}
 		else
 		{
-			if (pp.size[a] > 2 && pp.stack[a]->nb < pp.stack[a]->bellow->nb)
+			if (pp.size[A] > 2 && pp.stack[A]->nb < pp.stack[A]->bellow->nb)
 				pp_eorders(pp, (t_order[]){sa, end}, pp.isize_a);
 			pp_eorders(pp, (t_order[]){pb, pb, end}, pp.isize_a);
 		}
@@ -126,11 +126,11 @@ void	papalgo_init(t_nb *stack[2], size_t size[2])
 	pp.stack = stack;
 	pp.size = size;
 	pp.group_size = 1;
-	size_total = size[a];
+	size_total = size[A];
 	while (!is_sorted(stack, size) && pp.group_size < size_total)
 	{
-		pp.isize_a = size[a];
-		pp.isize_b = size[b];
+		pp.isize_a = size[A];
+		pp.isize_b = size[B];
 		if (pp.group_size == 1)
 			split_first_time(pp);
 		else if (pp.group_size * 2 >= size_total)

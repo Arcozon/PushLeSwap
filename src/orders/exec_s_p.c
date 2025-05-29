@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_order1.c                                      :+:      :+:    :+:   */
+/*   exec_s_p.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:42:03 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/25 17:20:12 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 17:15:25 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ void	e_sa(t_nb *stacks[2], size_t size[2])
 {
 	int	swap;
 
-	if (size[a] < 2)
+	if (size[A] < 2)
 		return ;
-	swap = stacks[a]->nb;
-	stacks[a]->nb = stacks[a]->bellow->nb;
-	stacks[a]->bellow->nb = swap;
+	swap = stacks[A]->nb;
+	stacks[A]->nb = stacks[A]->bellow->nb;
+	stacks[A]->bellow->nb = swap;
 }
 
 void	e_sb(t_nb *stacks[2], size_t size[2])
 {
 	int	swap;
 
-	if (size[b] < 2)
+	if (size[B] < 2)
 		return ;
-	swap = stacks[b]->nb;
-	stacks[b]->nb = stacks[b]->bellow->nb;
-	stacks[b]->bellow->nb = swap;
+	swap = stacks[B]->nb;
+	stacks[B]->nb = stacks[B]->bellow->nb;
+	stacks[B]->bellow->nb = swap;
 }
 
 void	e_ss(t_nb *stacks[2], size_t size[2])
@@ -44,24 +44,24 @@ void	e_pa(t_nb *stacks[2], size_t size[2])
 {
 	t_nb	*swap;
 
-	if (!size[b])
+	if (!size[B])
 		return ;
-	swap = stacks[b];
-	stacks[b] = remove_elem(stacks[b]);
-	--size[b];
-	stacks[a] = insert_elem_above(swap, stacks[a]);
-	++size[a];
+	swap = stacks[B];
+	stacks[B] = remove_elem(stacks[B]);
+	--size[B];
+	stacks[A] = insert_elem_above(swap, stacks[A]);
+	++size[A];
 }
 
 void	e_pb(t_nb *stacks[2], size_t size[2])
 {
 	t_nb	*swap;
 
-	if (!size[a])
+	if (!size[A])
 		return ;
-	swap = stacks[a];
-	stacks[a] = remove_elem(stacks[a]);
-	--size[a];
-	stacks[b] = insert_elem_above(swap, stacks[b]);
-	++size[b];
+	swap = stacks[A];
+	stacks[A] = remove_elem(stacks[A]);
+	--size[A];
+	stacks[B] = insert_elem_above(swap, stacks[B]);
+	++size[B];
 }

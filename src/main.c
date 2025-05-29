@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:20:17 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/28 19:02:04 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 19:30:50 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ char	ps_error(char errors, char *p_name)
 		print_error("Error\n");
 	return (errors);
 }
-void	push_all_poop(t_nb *stacks[2], size_t size[2]);
 
 int	main(int ac, char *av[])
 {
@@ -38,19 +37,19 @@ int	main(int ac, char *av[])
 		return (0);
 	if (!init_ps(&ps, av))
 	{
-		fix_them(ps.stack[a], ps.size[a]);
-		find_sorted_list(ps.stack[a]);
-		print_list(ps.stack, ps.size);
-		if (ps.size[a] <= 8)
+		fix_them(ps.stack[A], ps.size[A]);
+		find_sorted_list(ps.stack[A]);
+		// print_list(ps.stack, ps.size);
+		if (ps.size[A] <= 8 * 0)
 			start_brutforce(ps.stack, ps.size);
 		else
 		{
-			push_all_poop(ps.stack, ps.size);
+			adalgo(ps.stack, ps.size);
 			// papalgo_init(ps.stack, ps.size);
 		}
-		print_list(ps.stack, ps.size);
+		// print_list(ps.stack, ps.size);
 	}
-	free_stack(ps.stack[a], ps.size[a]);
+	free_stack(ps.stack[A], ps.size[A]);
 	return (ps_error(ps.errors, ps.p_name));
 	(void)ac;
 }

@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:48:39 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/25 18:48:10 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 15:24:56 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	is_sorted(t_nb *stacks[2], size_t size[2])
 	t_nb	*stack_a;
 	int		expected;
 
-	if (size[b])
+	if (size[B])
 		return (0);
 	expected = 0;
-	size_a = size[a];
-	stack_a = stacks[a];
+	size_a = size[A];
+	stack_a = stacks[A];
 	while (size_a--)
 	{
 		if (stack_a->nb != expected)

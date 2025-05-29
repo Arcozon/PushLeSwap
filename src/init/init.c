@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:47:44 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/28 15:22:34 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 15:26:17 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ char	init_ps(t_ps *ps, char *av[])
 	ps->p_name = av[0];
 	if (slashchr(av[0]) != -1)
 		ps->p_name += slashchr(av[0]) + 1;
-	ps->stack[a] = 0;
-	ps->size[a] = 0;
-	ps->stack[b] = 0;
-	ps->size[b] = 0;
+	ps->stack[A] = 0;
+	ps->size[A] = 0;
+	ps->stack[B] = 0;
+	ps->size[B] = 0;
 	if (!ps->errors)
-		ps->errors |= fill_stacks(&(ps->stack[a]), &(ps->size[a]), av + 1);
+		ps->errors |= fill_stacks(&(ps->stack[A]), &(ps->size[A]), av + 1);
 	if (!ps->errors)
-		ps->errors |= check_doublon(ps->stack[a], ps->size[a]);
+		ps->errors |= check_doublon(ps->stack[A], ps->size[A]);
 	return (ps->errors);
 }

@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:19:10 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/28 17:31:51 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 15:27:06 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 enum
 {
-	a,
-	b
+	A,
+	B
 };
 
 typedef struct s_nb	t_nb;
@@ -78,6 +78,9 @@ void	p_order(t_order order);
 void	pe_order(t_nb *stacks[2], size_t size[2], t_order order);
 
 int		is_sorted(t_nb *stacks[2], size_t size[2]);
+
+void	adalgo(t_nb *stacks[2], size_t size[2]);
+void	push_all_poop(t_nb *stacks[2], size_t size[2]);
 
 void	papalgo_init(t_nb *stack[2], size_t size[2]);
 

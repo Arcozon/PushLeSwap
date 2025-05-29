@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:35:32 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/28 11:30:59 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 15:26:43 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ static inline int	is_order_relevant(t_order order, t_order last, size_t size[2])
 	static char	need_size_a[NB_ORDER] = "00101101101";
 	static char	need_size_b[NB_ORDER] = "00011011011";
 
-	if (order == pa && !size[b])
+	if (order == pa && !size[B])
 		return (0);
-	if (order == pb && !size[a])
+	if (order == pb && !size[A])
 		return (0);
-	if (need_size_a[order] == '1' && size[a] <= 1)
+	if (need_size_a[order] == '1' && size[A] <= 1)
 		return (0);
-	if (need_size_b[order] == '1' && size[b] <= 1)
+	if (need_size_b[order] == '1' && size[B] <= 1)
 		return (0);
 	return (relevant[order][last] == '1');
 }

@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:21:18 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/25 17:24:05 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 15:24:08 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	e_ra(t_nb *stacks[2], size_t size[2])
 {
-	if (!size[a])
+	if (!size[A])
 		return ;
-	stacks[a] = stacks[a]->bellow;
+	stacks[A] = stacks[A]->bellow;
 }
 
 void	e_rb(t_nb *stacks[2], size_t size[2])
 {
-	if (!size[b])
+	if (!size[B])
 		return ;
-	stacks[b] = stacks[b]->bellow;
+	stacks[B] = stacks[B]->bellow;
 }
 
 void	e_rr(t_nb *stacks[2], size_t size[2])

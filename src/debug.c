@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:22:19 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/26 15:07:01 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 15:22:42 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ void	print_list(t_nb	*stack[2], size_t size[2])
 
 	ia = 0;
 	ib = 0;
-	while (ia < size[a] || ib < size[b])
+	while (ia < size[A] || ib < size[B])
 	{
-		if (ia < size[a])
+		if (ia < size[A])
 		{
-			fprintf(stderr, "|%.3d|",stack[a]->nb);
-			stack[a] = stack[a]->bellow;
+			fprintf(stderr, "|%.3d|",stack[A]->nb);
+			stack[A] = stack[A]->bellow;
 			++ia;
 		}
 		else
 			fprintf(stderr, "|   |");
-		if (ib < size[b])
+		if (ib < size[B])
 		{
-			fprintf(stderr, "%.3d|\n",stack[b]->nb);
-			stack[b] = stack[b]->bellow;
+			fprintf(stderr, "%.3d|\n",stack[B]->nb);
+			stack[B] = stack[B]->bellow;
 			++ib;
 		}
 		else
