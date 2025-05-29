@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 09:55:30 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/29 17:54:08 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/29 21:06:38 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,5 @@ void	find_sorted_list(t_nb *a)
 	// debug_lssl(a);
 	try_shit(a, &goal_lssl, S_INT32_MAX, a);
 	// printf("\n\n");
-	debug_lssl(a);
+	// debug_lssl(a);
 }
