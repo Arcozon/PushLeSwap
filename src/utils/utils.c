@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:24:56 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/25 19:14:04 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/30 17:12:05 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_isdigit(char c)
 	return (c >= '0' && c <= '9');
 }
 
-size_t ft_strlen(char str[])
+size_t	ft_strlen(char str[])
 {
 	size_t	i;
 
@@ -66,7 +66,7 @@ int	fcked_atoi(int *ptr, char str[])
 void	free_stack(t_nb *stack, size_t size)
 {
 	t_nb	*to_free;
-	
+
 	while (size--)
 	{
 		to_free = stack;

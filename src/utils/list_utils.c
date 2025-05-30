@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_manip.c                                       :+:      :+:    :+:   */
+/*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 16:48:03 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 15:32:15 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/30 17:12:16 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_nb	*remove_elem(t_nb *to_remove)
 	bellow = to_remove->bellow;
 	set_above(bellow, to_remove->above);
 	set_above(to_remove, to_remove);
-	return(bellow);
+	return (bellow);
 }
 
 int	is_sorted(t_nb *stacks[2], size_t size[2])

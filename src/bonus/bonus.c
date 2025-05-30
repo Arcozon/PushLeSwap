@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:19 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 15:55:13 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/30 17:08:33 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int ac, char *av[])
 		checker_routine(&checker);
 	free_stack(checker.stack[A], checker.size[A]);
 	free_stack(checker.stack[B], checker.size[B]);
-	checker_error(checker.errors, checker.p_name);
+	checker_error(checker.errors & ~F_NOT_SORTED, checker.p_name);
 	if (!(checker.errors & ~F_NOT_SORTED))
 		write(1, (char *[]){"OK\n", "KO\n"}[checker.errors & F_NOT_SORTED], 3);
 	return (checker.errors);
