@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.h                                         :+:      :+:    :+:   */
+/*   bonus.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 12:19:10 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 12:29:02 by gaeudes          ###   ########.fr       */
+/*   Created: 2025/05/30 12:08:38 by gaeudes           #+#    #+#             */
+/*   Updated: 2025/05/30 13:15:45 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#ifndef BONUS_H
+# define BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
 
-# include "errors.h"
-# include "force.h"
+# define F_NOT_SORTED	0b1
+# define A_NNUM			0b10
+# define A_OVER			0b100
+# define A_DBLE			0b1000
+# define S_WRONG_INSTR	0b10000
+# define E_MLLC			0b100000
 
-# define S_INT32_MIN -2147483648
-# define S_INT32_MAX 2147483647
 # define NB_ORDER 11
 
 enum
@@ -29,20 +31,31 @@ enum
 	B
 };
 
+typedef enum e_order
+{
+	pa,
+	pb,
+	sa,
+	sb,
+	ss,
+	ra,
+	rb,
+	rr,
+	rra,
+	rrb,
+	rrr,
+	error
+}	t_order;
+
 typedef struct s_nb	t_nb;
 struct s_nb
 {
 	int		nb;
 	t_nb	*bellow;
 	t_nb	*above;
-
-	size_t	lssl;
-	int		in_lssl;
-	unsigned char to_swap:1;
 };
-// len sub sorted list
 
-typedef struct s_pushswap
+typedef struct s_checker
 {
 	char	*p_name;
 
@@ -50,15 +63,9 @@ typedef struct s_pushswap
 	size_t	size[2];
 
 	char	errors;
-}	t_ps;
+}	t_checker;
 
-char	init_ps(t_ps *ps, char *av[]);
-
-char	check_doublon(t_nb *stack, size_t size);
-char	are_they_formated_well(char *av[]);
-int		fcked_atoi(int *ptr, char str[]);
-void	fix_them(t_nb *stack, size_t size);
-void	find_sorted_list(t_nb *a);
+char	init_checker(t_checker *checker, char *av[]);
 
 void	e_pa(t_nb *stacks[2], size_t size[2]);
 void	e_pb(t_nb *stacks[2], size_t size[2]);
@@ -72,31 +79,18 @@ void	e_rra(t_nb *stacks[2], size_t size[2]);
 void	e_rrb(t_nb *stacks[2], size_t size[2]);
 void	e_rrr(t_nb *stacks[2], size_t size[2]);
 
-
 void	e_order(t_nb *stacks[2], size_t size[2], t_order order);
-void	p_order(t_order order);
-void	pe_order(t_nb *stacks[2], size_t size[2], t_order order);
-
 int		is_sorted(t_nb *stacks[2], size_t size[2]);
-
-void	adalgo(t_nb *stacks[2], size_t size[2]);
-void	push_all_poop(t_nb *stacks[2], size_t size[2]);
-
-void	papalgo_init(t_nb *stack[2], size_t size[2]);
 
 void	set_above(t_nb	*me, t_nb *above);
 void	set_bellow(t_nb *me, t_nb *bellow);
 t_nb	*insert_elem_above(t_nb	*to_insert, t_nb *bellow);
 t_nb	*remove_elem(t_nb *to_remove);
 
-int		slashchr(char *str);
+char	check_doublon(t_nb *stack, size_t size);
+char	are_they_formated_well(char *av[]);
+int		fcked_atoi(int *ptr, char str[]);
 int		ft_isdigit(char c);
-size_t	ft_strlen(char str[]);
 void	free_stack(t_nb *stack, size_t size);
 
-// Debug
-void	print_list(t_nb	*stack[2], size_t size[2]);
-void	print_one_list(t_nb *stack);
-
 #endif
-#include <stdio.h>

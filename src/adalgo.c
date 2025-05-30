@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 18:24:35 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/29 21:38:55 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/30 13:17:15 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_bmove
 
 void	push_all_poop(t_nb *stacks[2], size_t size[2])
 {
+	const int	middle_b = (int)(size[A] + size[B]) * 56 / 100;
 	size_t	len = size[A];
 
 	while (len--)
@@ -52,7 +53,7 @@ void	push_all_poop(t_nb *stacks[2], size_t size[2])
 		else
 		{
 			pe_order(stacks, size, pb);
-			if (size[B] > 1 && stacks[B]->nb > (int)(size[A] + size[B]) / 2)
+			if (size[B] > 1 && stacks[B]->nb > middle_b)
 				pe_order(stacks, size, rb);
 		}
 	}

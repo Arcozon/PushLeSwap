@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 12:20:17 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 13:21:17 by gaeudes          ###   ########.fr       */
+/*   Created: 2025/05/30 12:08:19 by gaeudes           #+#    #+#             */
+/*   Updated: 2025/05/30 13:21:14 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "bonus.h"
+
+void	e_order(t_nb *stacks[2], size_t size[2], t_order to_exec)
+{
+	static void	(*exec[NB_ORDER])(t_nb *[2], size_t [2]) = {e_pa, e_pb, e_sa,
+		e_sb, e_ss, e_ra, e_rb, e_rr, e_rra, e_rrb, e_rrr};
+
+	exec[to_exec](stacks, size);
+}
 
 void	print_error(char error[])
 {
 	write(2, error, ft_strlen(error));
 }
 
-char	ps_error(char errors, char *p_name)
+char	checker_error(char errors, char *p_name)
 {
 	if (errors & E_MLLC)
 	{
@@ -28,27 +36,17 @@ char	ps_error(char errors, char *p_name)
 		print_error("Error\n");
 	return (errors);
 }
-// CHECK SEGFAULT
+
 int	main(int ac, char *av[])
 {
-	t_ps	ps;
+	t_checker	checker;
 
 	if (ac == 1)
 		return (0);
-	if (!init_ps(&ps, av))
+	if (!init_checker(&checker, av))
 	{
-		fix_them(ps.stack[A], ps.size[A]);
-		find_sorted_list(ps.stack[A]);
-		// print_list(ps.stack, ps.size);
-		if (ps.size[A] <= 8 * 0)
-			start_brutforce(ps.stack, ps.size);
-		else
-		{
-			adalgo(ps.stack, ps.size);
-			// papalgo_init(ps.stack, ps.size);
-		}
-		// print_list(ps.stack, ps.size);
 	}
-	free_stack(ps.stack[A], ps.size[A]);
-	return (ps_error(ps.errors, ps.p_name));
+	free_stack(checker.stack[A], checker.size[A]);
+	free_stack(checker.stack[B], checker.size[B]);
+	return (checker_error(checker.errors, checker.p_name));
 }

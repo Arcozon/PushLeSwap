@@ -1,4 +1,5 @@
 NAME = push_swap
+BONUS_NAME = checker
 
 S_SRC_FORCE =  brutforce.c  init_force.c
 D_SRC_FORCE =  force/
@@ -23,6 +24,10 @@ SRC_UTILS =  $(addprefix $(D_SRC_UTILS), $(S_SRC_UTILS))
 SRC =  $(SRC_UTILS)  $(SRC_INIT) $(SRC_ORDER)  $(SRC_FORCE)  $(SRC_PAPALGO)  debug.c  main.c  find_sub_list.c adalgo.c
 D_SRC =  src/
 
+S_SRC_BONUS =  bonus.c
+D_SRC_BONUS =  bonus/
+SRC_BONUS =  $(addprefix $(D_SRC_BONUS), $(sort $(S_SRC_BONUS)))
+
 D_INC = inc/ 
 
 D_BUILD = .build/
@@ -38,6 +43,9 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	$(CC) -o$@ $^
+
+bonus:	$(BONUS_NAME)
+	cc -o $@ $^
 
 $(OBJ): $(D_BUILD)%.o:	$(D_SRC)%.c
 	@mkdir -p $(@D)
