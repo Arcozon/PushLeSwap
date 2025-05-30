@@ -6,26 +6,18 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:19 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 13:21:14 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/30 15:55:13 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bonus.h"
-
-void	e_order(t_nb *stacks[2], size_t size[2], t_order to_exec)
-{
-	static void	(*exec[NB_ORDER])(t_nb *[2], size_t [2]) = {e_pa, e_pb, e_sa,
-		e_sb, e_ss, e_ra, e_rb, e_rr, e_rra, e_rrb, e_rrr};
-
-	exec[to_exec](stacks, size);
-}
 
 void	print_error(char error[])
 {
 	write(2, error, ft_strlen(error));
 }
 
-char	checker_error(char errors, char *p_name)
+void	checker_error(char errors, char *p_name)
 {
 	if (errors & E_MLLC)
 	{
@@ -34,7 +26,27 @@ char	checker_error(char errors, char *p_name)
 	}
 	else if (errors)
 		print_error("Error\n");
-	return (errors);
+}
+
+void	checker_routine(t_checker *checker)
+{
+	t_order	order;
+
+	order = 0;
+	fix_them(checker->stack[A], checker->size[A]);
+	while (order != done)
+	{
+		order = get_next_order();
+		if (order == error)
+		{
+			checker->errors |= S_WRONG_INSTR;
+			return ;
+		}
+		else if (order != done)
+			e_order(checker->stack, checker->size, order);
+	}
+	if (!is_sorted(checker->stack, checker->size))
+		checker->errors |= F_NOT_SORTED;
 }
 
 int	main(int ac, char *av[])
@@ -44,9 +56,11 @@ int	main(int ac, char *av[])
 	if (ac == 1)
 		return (0);
 	if (!init_checker(&checker, av))
-	{
-	}
+		checker_routine(&checker);
 	free_stack(checker.stack[A], checker.size[A]);
 	free_stack(checker.stack[B], checker.size[B]);
-	return (checker_error(checker.errors, checker.p_name));
+	checker_error(checker.errors, checker.p_name);
+	if (!(checker.errors & ~F_NOT_SORTED))
+		write(1, (char *[]){"OK\n", "KO\n"}[checker.errors & F_NOT_SORTED], 3);
+	return (checker.errors);
 }

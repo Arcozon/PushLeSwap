@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 13:07:24 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/29 20:59:15 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/30 16:04:50 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	e_order(t_nb *stacks[2], size_t size[2], t_order to_exec)
 
 void	p_order(t_order order)
 {
-	static char	*s_order[NB_ORDER] = {
+	static char		*s_order[NB_ORDER] = {
 		"pa\n",
 		"pb\n",
 		"sa\n",
@@ -35,7 +35,7 @@ void	p_order(t_order order)
 		"rrb\n",
 		"rrr\n",
 	};
-	static size_t	l_order[NB_ORDER] = {3,3,3,3,3,3,3,3,4,4,4};
+	static size_t	l_order[NB_ORDER] = {3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4};
 
 	write(1, s_order[order], l_order[order]);
 }

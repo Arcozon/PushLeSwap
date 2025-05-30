@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   b_init.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:47:44 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 13:08:13 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/30 15:57:50 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	reverse_that_shit(t_nb *a)
 	a->above = above;
 }
 
-char	fill_stacks(t_nb **a, size_t* size, char *av[])
+char	fill_stacks(t_nb **a, size_t *size, char *av[])
 {
 	int	nb;
 
@@ -89,7 +89,7 @@ char	init_checker(t_checker *checker, char *av[])
 	checker->size[B] = 0;
 	if (!checker->errors)
 		checker->errors |= fill_stacks(&(checker->stack[A]),
-			&(checker->size[A]), av + 1);
+				&(checker->size[A]), av + 1);
 	if (!checker->errors)
 		checker->errors |= check_doublon(checker->stack[A], checker->size[A]);
 	return (checker->errors);

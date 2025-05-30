@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:47:44 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/29 15:26:17 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/30 16:03:59 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	reverse_that_shit(t_nb *a)
 	a->above = above;
 }
 
-char	fill_stacks(t_nb **a, size_t* size, char *av[])
+char	fill_stacks(t_nb **a, size_t *size, char *av[])
 {
 	int	nb;
 

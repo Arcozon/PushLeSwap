@@ -6,13 +6,14 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 17:35:32 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/29 15:26:43 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/30 16:55:25 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-static inline void	revert_order(t_nb *stacks[2], size_t size[2], t_order to_rev)
+static inline void	revert_order(t_nb *stacks[2], size_t size[2],
+	t_order to_rev)
 {
 	static void	(*rev[NB_ORDER])(t_nb *[2], size_t [2]) = {e_pb, e_pa, e_sa,
 		e_sb, e_ss, e_rra, e_rrb, e_rrr, e_ra, e_rb, e_rr};
@@ -29,7 +30,8 @@ static inline void	exec_order(t_nb *stacks[2], size_t size[2], t_order to_exec)
 }
 
 // I did this myself and its pain
-static inline int	is_order_relevant(t_order order, t_order last, size_t size[2])
+static inline int	is_order_relevant(t_order order, t_order last,
+	size_t size[2])
 {
 	static char	relevant[NB_ORDER + 1][NB_ORDER + 1] = {
 		"10111111111",
@@ -66,25 +68,21 @@ int	bf(t_force *force, size_t actual_depth)
 		return (1);
 	if (actual_depth >= force->max_depth)
 	{
-		// print_one_order(force->orders[actual_depth - 1]);
-		// print_one_list(force->stacks[a]);
-		++force->nmd;
-		revert_order(force->stacks, force->size, force->orders[actual_depth - 1]);
+		revert_order(force->stacks, force->size,
+			force->orders[actual_depth - 1]);
 		return (0);
 	}
-	try = 0;
-	while (try < end)
+	try = -1;
+	while (++try < end)
 	{
-		if (is_order_relevant(try, force->orders[actual_depth - 1], force->size))
+		if (is_order_relevant(try, force->orders[actual_depth - 1],
+				force->size))
 		{
-			++force->stupidcount;
-			// fprintf(stderr, "%lu", actual_depth);	
 			force->orders[actual_depth] = try;
 			exec_order(force->stacks, force->size, try);
 			if (bf(force, actual_depth + 1))
 				return (1);
 		}
-		++try;
 	}
 	revert_order(force->stacks, force->size, force->orders[actual_depth - 1]);
 	return (0);
@@ -92,19 +90,17 @@ int	bf(t_force *force, size_t actual_depth)
 
 int	depth_0(t_force *force, size_t actual_depth)
 {
-	static char relevant[NB_ORDER] = "01100100100";
+	static char	relevant[NB_ORDER] = "01100100100";
 
 	if (is_sorted(force->stacks, force->size))
 		return (1);
 	if (actual_depth >= force->max_depth)
-		return (++force->nmd, 0);
+		return (0);
 	force->orders[actual_depth] = 0;
 	while (force->orders[actual_depth] < end)
 	{
 		if (relevant[force->orders[actual_depth]] == '1')
 		{
-			// fprintf(stderr, "%lu", actual_depth);
-			++force->stupidcount;
 			exec_order(force->stacks, force->size, force->orders[actual_depth]);
 			if (bf(force, actual_depth + 1))
 				return (1);

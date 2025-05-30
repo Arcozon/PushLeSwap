@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:20:17 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 13:21:17 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/30 16:58:51 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	ps_error(char errors, char *p_name)
 		print_error("Error\n");
 	return (errors);
 }
+
 // CHECK SEGFAULT
 int	main(int ac, char *av[])
 {
@@ -38,16 +39,10 @@ int	main(int ac, char *av[])
 	if (!init_ps(&ps, av))
 	{
 		fix_them(ps.stack[A], ps.size[A]);
-		find_sorted_list(ps.stack[A]);
-		// print_list(ps.stack, ps.size);
-		if (ps.size[A] <= 8 * 0)
+		if (ps.size[A] <= 8)
 			start_brutforce(ps.stack, ps.size);
 		else
-		{
 			adalgo(ps.stack, ps.size);
-			// papalgo_init(ps.stack, ps.size);
-		}
-		// print_list(ps.stack, ps.size);
 	}
 	free_stack(ps.stack[A], ps.size[A]);
 	return (ps_error(ps.errors, ps.p_name));

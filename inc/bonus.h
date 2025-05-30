@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:08:38 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 13:15:45 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/30 15:55:20 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+# define S_INT32_MIN -2147483648
 
 # define F_NOT_SORTED	0b1
 # define A_NNUM			0b10
@@ -33,6 +35,7 @@ enum
 
 typedef enum e_order
 {
+	done = -1,
 	pa,
 	pb,
 	sa,
@@ -65,7 +68,12 @@ typedef struct s_checker
 	char	errors;
 }	t_checker;
 
+char	check_doublon(t_nb *stack, size_t size);
+char	are_they_formated_well(char *av[]);
+void	fix_them(t_nb *stack, size_t size);
 char	init_checker(t_checker *checker, char *av[]);
+
+t_order	get_next_order(void);
 
 void	e_pa(t_nb *stacks[2], size_t size[2]);
 void	e_pb(t_nb *stacks[2], size_t size[2]);
@@ -87,9 +95,9 @@ void	set_bellow(t_nb *me, t_nb *bellow);
 t_nb	*insert_elem_above(t_nb	*to_insert, t_nb *bellow);
 t_nb	*remove_elem(t_nb *to_remove);
 
-char	check_doublon(t_nb *stack, size_t size);
-char	are_they_formated_well(char *av[]);
-int		fcked_atoi(int *ptr, char str[]);
+size_t	ft_strlen(char str[]);
+int		fcked_atoi(int *ptr, char str[]);;
+int		slashchr(char *str);
 int		ft_isdigit(char c);
 void	free_stack(t_nb *stack, size_t size);
 
