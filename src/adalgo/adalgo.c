@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 18:24:35 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 16:48:49 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/05/31 13:10:51 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	adalgo(t_nb *stacks[2], size_t size[2])
 	size_t	n_ra;
 	size_t	n_rra;
 
+	if (is_sorted(stacks, size))
+		return ;
 	find_sorted_list(stacks[A]);
 	push_all_poop(stacks, size);
 	while (size[B])
