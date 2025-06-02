@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:44 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/06/02 16:11:28 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/06/02 17:20:15 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ char	are_they_formated_well(char *av[])
 
 char	check_doublon(t_nb *stack, size_t size)
 {
-	size_t	i = 0;
-	t_nb	*goals[2];
+	static size_t	i = 0;
+	t_nb			*goals[2];
 
 	goals[BELLOW] = stack->above;
 	goals[ABOVE] = stack;
@@ -75,7 +75,3 @@ char	check_doublon(t_nb *stack, size_t size)
 	}
 	return (0);
 }
-
-
-
-
