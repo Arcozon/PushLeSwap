@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 13:23:41 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 15:58:00 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/06/02 16:11:53 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void	free_stack(t_nb *stack, size_t size)
 {
 	t_nb	*to_free;
 
-	while (size--)
+	while (size-- && stack)
 	{
 		to_free = stack;
-		stack = stack->above;
+		stack = stack->bellow;
 		free(to_free);
 	}
 }

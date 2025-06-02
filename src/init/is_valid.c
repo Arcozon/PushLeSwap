@@ -6,11 +6,14 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:13:44 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/06/02 15:28:30 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/06/02 16:10:27 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+#define BELLOW 0
+#define ABOVE 1
 
 int	is_he_formated_well(char str[])
 {
@@ -43,39 +46,36 @@ char	are_they_formated_well(char *av[])
 	}
 	return (0);
 }
-#include <stdio.h>
+
 char	check_doublon(t_nb *stack, size_t size)
 {
-	size_t	i;
-	t_nb	*goal_bellow;
-	t_nb	*goal_above;
+	size_t	i = 0;
+	t_nb	*goals[2];
 
-	i = 0;
-	goal_bellow = stack;
-	goal_above = stack->bellow;
-	stack = stack->bellow;
+	goals[BELLOW] = stack->above;
+	goals[ABOVE] = stack;
 	while (i < size)
 	{
-		fprintf(stderr, "BELLOW: %10p :% 2d\n", goal_bellow, goal_bellow->nb);
-		while (stack != goal_bellow)
+		while (stack != goals[BELLOW])
 		{
-			fprintf(stderr, "-- %10p :% 2d\n", stack, stack->nb);
-			if (stack->nb == goal_bellow->nb)
+			if (stack->nb == goals[BELLOW]->nb)
 				return (A_DBLE);
 			stack = stack->bellow;
 		}
-		goal_bellow = (++i, stack->above);
-		fprintf(stderr, "ABOVE: %10p :% 2d\n", goal_above, goal_above->nb);
+		goals[BELLOW] = (++i, stack->above);
 		stack = stack->above;
-		while (i < size && stack != goal_above)
+		while (i < size && stack != goals[ABOVE])
 		{
-			fprintf(stderr, "-- %10p :% 2d\n", stack, stack->nb);
-			if (stack->nb == goal_above->nb)
+			if (stack->nb == goals[ABOVE]->nb)
 				return (A_DBLE);
 			stack = stack->above;
 		}
-		goal_above = (++i, stack->bellow);
+		goals[ABOVE] = (++i, stack->bellow);
 		stack = stack->bellow;
 	}
 	return (0);
 }
+
+
+
+
