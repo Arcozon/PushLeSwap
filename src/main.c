@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 12:20:17 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 16:58:51 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/06/01 13:06:27 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	ps_error(char errors, char *p_name)
 	return (errors);
 }
 
-// CHECK SEGFAULT
 int	main(int ac, char *av[])
 {
 	t_ps	ps;
@@ -39,7 +38,7 @@ int	main(int ac, char *av[])
 	if (!init_ps(&ps, av))
 	{
 		fix_them(ps.stack[A], ps.size[A]);
-		if (ps.size[A] <= 8)
+		if (ps.size[A] <= 7)
 			start_brutforce(ps.stack, ps.size);
 		else
 			adalgo(ps.stack, ps.size);
