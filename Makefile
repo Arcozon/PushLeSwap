@@ -24,16 +24,15 @@ SRC_UTILS =  $(addprefix $(D_SRC_UTILS), $(S_SRC_UTILS))
 SRC =  $(SRC_UTILS)  $(SRC_INIT) $(SRC_ORDER)  $(SRC_FORCE)  $(SRC_ADALGO)   main.c
 D_SRC =  src/
 
-S_SRC_BONUS =  b_exec_r.c  b_exec_rr.c  b_exec_s_p.c  b_get_next_order.c  b_init.c  b_is_valid.c  b_list_utils.c  bonus.c  b_utils.c  b_fix_them.c
-D_SRC_BONUS =  bonus/
-SRC_BONUS =  $(addprefix $(D_SRC_BONUS), $(S_SRC_BONUS))
+S_BONUS =  b_exec_r.c  b_exec_rr.c  b_exec_s_p.c  b_get_next_order.c  b_init.c  b_is_valid.c  b_list_utils.c  bonus.c  b_utils.c  b_fix_them.c
+D_BONUS =  bonus/
+SRC_BONUS = $(addprefix $(D_BONUS), $(S_BONUS))
 
 D_INC = inc/ 
 
 D_BUILD = .build/
 OBJ =  $(addprefix $(D_BUILD), $(SRC:.c=.o))
 B_OBJ = $(addprefix $(D_BUILD), $(SRC_BONUS:.c=.o))
-
 
 CC =  cc
 FLAGS = -Wall -Wextra -Werror -MMD -g
@@ -45,12 +44,16 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 	$(CC) -o$@ $^
 
+$(OBJ):	$(D_BUILD)%.o:	$(D_SRC)%.c
+	@mkdir -p $(@D)
+	$(CC) $(FLAGS) -I$(D_INC) -c $< -o $@ 
+
 bonus:	$(BONUS_NAME)
 
 $(BONUS_NAME):	$(B_OBJ)
 	$(CC) -o $@ $^
 
-$(D_BUILD)%.o:	$(D_SRC)%.c
+$(B_OBJ):	$(D_BUILD)%.o:	%.c
 	@mkdir -p $(@D)
 	$(CC) $(FLAGS) -I$(D_INC) -c $< -o $@ 
 

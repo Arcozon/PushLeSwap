@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:47:44 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 16:03:59 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/06/02 15:04:49 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,7 @@ char	fill_stacks(t_nb **a, size_t *size, char *av[])
 char	init_ps(t_ps *ps, char *av[])
 {
 	ps->errors = are_they_formated_well(av + 1);
-	ps->p_name = av[0];
-	if (slashchr(av[0]) != -1)
-		ps->p_name += slashchr(av[0]) + 1;
+	ps->p_name = av[0] + slashchr(av[0]);
 	ps->stack[A] = 0;
 	ps->size[A] = 0;
 	ps->stack[B] = 0;
