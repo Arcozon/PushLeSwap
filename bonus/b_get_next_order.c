@@ -6,7 +6,7 @@
 /*   By: gaeudes <gaeudes@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 13:35:59 by gaeudes           #+#    #+#             */
-/*   Updated: 2025/05/30 17:02:12 by gaeudes          ###   ########.fr       */
+/*   Updated: 2025/06/04 15:18:19 by gaeudes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,16 @@ void	update_in_order(int j, char *in_order, char c)
 			in_order[i] = 0;
 }
 
+void	empty_stdin()
+{
+	char	c;
+	int		br;
+
+	br = read(0, &c, 1);
+	while (br == 1 && c != '\n')
+		br = read(0, &c, 1);
+}
+
 t_order	get_next_order(void)
 {
 	char	in_order[NB_ORDER];
@@ -86,5 +96,8 @@ t_order	get_next_order(void)
 	}
 	if (br < 0)
 		return (error);
+	if (is_in_order_empty(in_order))
+		while (br == 1 && c != '\n')
+		br = read(0, &c, 1);
 	return (get_order(in_order, j));
 }
